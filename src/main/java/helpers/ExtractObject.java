@@ -1,21 +1,24 @@
 package helpers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import runner.Runner;
 import model.User;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 
 public class ExtractObject {
 
     public static User getObjectFromJson(final String pathToFile)
             throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
+        Gson gson = new Gson();
         File file = new File(
                 Runner.class
                         .getResource(pathToFile)
                         .getFile());
-        return mapper.readValue(file, User.class);
+        Reader reader = new FileReader(file);
+        return gson.fromJson(reader, User.class);
     }
 }
