@@ -1,0 +1,53 @@
+{
+  "id": 1,
+  "name": "John",
+  "expenses": [
+    {
+      "id": 1,
+      "details": [
+        {
+          "category": "Car",
+          "amount": 3000
+        },
+        {
+          "category": "Food",
+          "amount": 500
+        },
+        {
+          "category": "Mobile",
+          "amount": 300
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "details": [
+        {
+          "category": "Car",
+          "amount": 1700
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "details": [
+        {
+          "category": "Mobile",
+          "amount": 400
+        },
+        {
+          "category": "Car",
+          "amount": 1200
+        },
+        {
+          "category": "Car",
+          "amount": 1900
+        },
+        {
+          "category": "Food",
+          "amount": 1200
+        }
+      ]
+    }
+  ]
+}
