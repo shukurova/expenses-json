@@ -8,23 +8,17 @@ import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class WriteJsonObjectToFile {
     public static void writeToFile()
             throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         HashMap<String, Integer> hashMap;
-        List<String> categories = new ArrayList<>();
-        categories.add("car");
-        categories.add("food");
-        categories.add("mobile");
         User user = ExtractObject
                 .getObjectFromJson("/expenses.json");
         hashMap = GetTotalAmount
-                .getTotalAmountByCategory(user, categories);
+                .getTotalAmountByCategory(user);
 
         JSONArray jsonArray = new JSONArray();
         for (String key : hashMap.keySet()) {
