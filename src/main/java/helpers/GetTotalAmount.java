@@ -12,9 +12,8 @@ public class GetTotalAmount {
     public static HashMap<String, Integer> getTotalAmountByCategory(final User user) {
         HashMap<String, Integer> result = new HashMap<>();
         List<Expenses> expenses = user.getExpenses();
-        int sum = 0;
         for (Expenses expense : expenses) {
-            String category = null;
+            String category;
             List<Details> details = expense.getDetails();
             for (Details detail : details) {
                 category = detail.getCategory();

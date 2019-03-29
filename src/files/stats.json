@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "name": "John",
+  "stats": [
+    {
+      "category": "Car",
+      "total": 7800
+    },
+    {
+      "category": "Mobile",
+      "total": 700
+    },
+    {
+      "category": "Food",
+      "total": 1700
+    }
+  ]
+}

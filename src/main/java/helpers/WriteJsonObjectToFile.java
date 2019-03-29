@@ -3,15 +3,17 @@ package helpers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.User;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import model.stats.Stat;
+import model.stats.Stats;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class WriteJsonObjectToFile {
-    public static void writeToFile()
+    public static void writeJsonToFile()
             throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         HashMap<String, Integer> hashMap;
@@ -20,21 +22,21 @@ public class WriteJsonObjectToFile {
         hashMap = GetTotalAmount
                 .getTotalAmountByCategory(user);
 
-        JSONArray jsonArray = new JSONArray();
+        Stat stat = new Stat();
+        List<Stats> stats = new ArrayList<>();
         for (String key : hashMap.keySet()) {
-            JSONObject category = new JSONObject();
-            category.put("category", (key));
-            category.put("total", hashMap.get(key));
-            jsonArray.put(category);
+            Stats statsList = new Stats();
+            statsList.setCategory(key);
+            statsList.setTotal(hashMap.get(key));
+            stats.add(statsList);
         }
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", user.getId());
-        jsonObject.put("name", user.getName());
-        jsonObject.put("stats", jsonArray);
+        stat.setId(user.getId());
+        stat.setName(user.getName());
+        stat.setStats(stats);
 
         try (FileWriter file = new FileWriter("src/files/stats.json")) {
-            file.write(gson.toJson(jsonObject));
+            file.write(gson.toJson(stat));
             file.flush();
         }
     }
