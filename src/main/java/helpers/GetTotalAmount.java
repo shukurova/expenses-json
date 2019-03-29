@@ -9,22 +9,22 @@ import java.util.List;
 
 public class GetTotalAmount {
 
-    public static HashMap<String, Integer> getTotalAmountByCategory(final User user,
-                                                                    final List<String> neededCategory) {
+    public static HashMap<String, Integer> getTotalAmountByCategory(final User user) {
         HashMap<String, Integer> result = new HashMap<>();
         List<Expenses> expenses = user.getExpenses();
-        for (String c : neededCategory) {
-            int sum = 0;
-            for (Expenses expense : expenses) {
-                List<Details> details = expense.getDetails();
-                for (Details detail : details) {
-                    String category = detail.getCategory();
-                    int amount = detail.getAmount();
-                    if (category.equalsIgnoreCase(c)) {
-                        sum += amount;
-                    }
+        int sum = 0;
+        for (Expenses expense : expenses) {
+            String category = null;
+            List<Details> details = expense.getDetails();
+            for (Details detail : details) {
+                category = detail.getCategory();
+                int amount = detail.getAmount();
+                if (result.get(category) == null) {
+                    result.put(category, amount);
+                } else {
+                    int localSum = result.get(category) + amount;
+                    result.put(category, localSum);
                 }
-                result.put(c, sum);
             }
         }
         return result;
